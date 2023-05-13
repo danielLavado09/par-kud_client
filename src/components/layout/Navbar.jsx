@@ -4,9 +4,16 @@ function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
+          <img
+            src="/logo.png"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt=""
+          />
           PAR-KUD
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

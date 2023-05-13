@@ -9,7 +9,7 @@ function Login() {
           <div className="row align-items-strectch justify-content-center mt-5">
             <div className="col-lg-5 col-md-5 d-lg-block">
               <div className="card bg-white text-dark">
-                <h2 className="card-header card-header-gradient border-dark text-black font-weight-bold">
+                <h2 className="card-header border-dark text-black font-weight-bold">
                   Iniciar sesión
                 </h2>
                 <div className="card-body">
