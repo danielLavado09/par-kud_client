@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
-        <Link className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/">
           <img
             src="/logo.png"
             width="30"
@@ -13,7 +13,7 @@ function Navbar() {
             alt=""
           />
           PAR-KUD
-        </Link>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -28,19 +28,19 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <NavLink className="nav-link" to="/">
                 Inicio
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
+              <NavLink className="nav-link" to="/login">
                 Iniciar sesión
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <NavLink className="nav-link" to="/register">
                 Registrarse
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
