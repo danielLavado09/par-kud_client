@@ -1,9 +1,9 @@
 import "./Sidebar.css";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-
 import SidebarAdmin from "./SidebarAdmin";
 import SidebarUser from "./SidebarUser";
+import { Nav } from "react-bootstrap";
 
 function Sidebar() {
   const { role } = useContext(UserContext);
@@ -11,9 +11,9 @@ function Sidebar() {
   const menu = role === "admin" ? <SidebarAdmin /> : <SidebarUser />;
 
   return (
-    <nav className="sidebar bg-dark text-white">
-      <ul className="nav flex-column">{menu}</ul>
-    </nav>
+    <Nav className="sidebar flex-column bg-dark text-white">
+      {menu}
+    </Nav>
   );
 }
 

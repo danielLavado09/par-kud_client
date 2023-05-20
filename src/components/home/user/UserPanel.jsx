@@ -1,4 +1,3 @@
-import "./UserPanel.css";
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/Sidebar";
@@ -18,7 +17,7 @@ function UserPanel() {
   }, [setRole, role, navigate]);
 
   return (
-    <div className="user-panel">
+    <div className="custom-panel">
       <Sidebar />
       <Outlet />
     </div>

@@ -11,16 +11,7 @@ function Home() {
               <h5 className="card-title">Quienes somos</h5>
             </div>
             <div className="card-body">
-              <p className="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse pretium arcu ac urna mattis tincidunt. Aliquam
-                luctus eleifend risus, at venenatis neque fermentum at. Morbi
-                rutrum lectus nec ipsum tempor, vitae bibendum tortor tincidunt.
-                Nullam semper fringilla quam, vitae euismod velit scelerisque
-                vel. Vestibulum ante ipsum primis in faucibus orci luctus et
-                ultrices posuere cubilia curae; In fermentum efficitur
-                tristique.
-              </p>
+              <p className="card-text">En construcción...</p>
             </div>
           </div>
         </div>

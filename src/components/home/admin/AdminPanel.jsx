@@ -1,4 +1,4 @@
-import "./AdminPanel.css";
+import "./AdminPanel.css"
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/Sidebar";
@@ -18,7 +18,7 @@ function AdminPanel() {
   }, [setRole, role, navigate]);
 
   return (
-    <div className="AdminPanel">
+    <div className="custom-panel">
       <Sidebar></Sidebar>
       <Outlet />
     </div>

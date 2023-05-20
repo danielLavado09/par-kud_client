@@ -11,6 +11,9 @@ import Register from "./components/auth/Register";
 
 import AdminPanel from "./components/home/admin/AdminPanel";
 import AdminParkings from "./components/home/admin/parkings/AdminParkings";
+import AdminEmployees from "./components/home/admin/employees/AdminEmployees";
+import AdminStatistics from "./components/home/admin/statistics/AdminStatistics";
+import AdminUsers from "./components/home/admin/users/AdminUsers";
 
 import UserPanel from "./components/home/user/UserPanel";
 import UserReservations from "./components/home/user/reservations/UserReservations";
@@ -32,6 +35,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminPanel />}>
             <Route path="parkings" element={<AdminParkings />} />
+            <Route path="employees" element={<AdminEmployees />} />
+            <Route path="statistics" element={<AdminStatistics />} />
+            <Route path="users" element={<AdminUsers />} />
           </Route>
           <Route path="/user" element={<UserPanel />}>
             <Route path="reservations" element={<UserReservations />} />

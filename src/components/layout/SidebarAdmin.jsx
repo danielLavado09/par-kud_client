@@ -1,32 +1,55 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import {
+  FaCar,
+  FaBuilding,
+  FaRegChartBar,
+  FaUserFriends,
+} from "react-icons/fa";
 
 function SidebarAdmin() {
   return (
     <>
-      <li className="nav-item">
-        <Link to="parkings" className="nav-link">
-          <i className="icon ion-md-car lead mr-2" />
+      <Nav.Item>
+        <Nav.Link
+          as={NavLink}
+          to="parkings"
+          className="d-flex align-items-center custom-nav-link"
+        >
+          <FaCar className="mr-2" />
           Parqueaderos
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link to="employees" className="nav-link">
-          <i className="icon ion-md-business lead mr-2" />
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link
+          as={NavLink}
+          to="employees"
+          className="d-flex align-items-center custom-nav-link"
+        >
+          <FaBuilding className="mr-2" />
           Empleados
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link to="statistics" className="nav-link">
-          <i className="icon ion-md-stats lead mr-2" />
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link
+          as={NavLink}
+          to="statistics"
+          className="d-flex align-items-center custom-nav-link"
+        >
+          <FaRegChartBar className="mr-2" />
           Estadisticas
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link to="users" className="nav-link">
-          <i className="icon ion-md-people lead mr-2" />
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link
+          as={NavLink}
+          to="users"
+          className="d-flex align-items-center custom-nav-link"
+        >
+          <FaUserFriends className="mr-2" />
           Usuarios
-        </Link>
-      </li>
+        </Nav.Link>
+      </Nav.Item>
     </>
   );
 }

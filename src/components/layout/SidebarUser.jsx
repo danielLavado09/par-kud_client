@@ -1,14 +1,20 @@
-import { Link } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { FaBookmark } from "react-icons/fa";
 
 function SidebarUser() {
   return (
     <>
-      <li className="nav-item">
-        <Link to="reservations" className="nav-link">
-          <i className="icon ion-md-bookmark lead mr-2" />
+      <Nav.Item className="nav-item">
+        <Nav.Link
+          as={NavLink}
+          to="reservations"
+          className="d-flex align-items-center custom-nav-link"
+        >
+          <FaBookmark className="mr-2"/>
           Reservas
-        </Link>
-      </li>
+        </Nav.Link>
+      </Nav.Item>
     </>
   );
 }

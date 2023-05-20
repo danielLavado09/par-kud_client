@@ -55,9 +55,9 @@ function RegisterParkings() {
   };
 
   return (
-    <Container className="rounded shadow">
+    <Container className="rounded">
       <div className="d-lg-block">
-        <Card bg="white" text="dark">
+        <Card className="rounded shadow" bg="white" text="dark">
           <Card.Header className="card-big-text border-dark text-black font-weight-bold">
             Registrar parqueadero
           </Card.Header>
