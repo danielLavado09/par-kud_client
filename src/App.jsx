@@ -1,24 +1,43 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/layout/Navbar";
-import Login from "./components/auth/Login";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import Home from "./components/home/Home";
+import NavigationBar from "./components/layout/NavigationBar";
+
+import LoginUser from "./components/auth/LoginUser";
+import LoginEmployee from "./components/auth/LoginEmployee";
 import Register from "./components/auth/Register";
+
 import AdminPanel from "./components/home/admin/AdminPanel";
-import AdminParking from "./components/home/admin/parking/AdminParking";
+import AdminParkings from "./components/home/admin/parkings/AdminParkings";
+
+import UserPanel from "./components/home/user/UserPanel";
+import UserReservations from "./components/home/user/reservations/UserReservations";
+
+import { UserContext } from "./context/UserContext";
 
 function App() {
-  console.log();
+  const [user, setUser] = useState("");
+  const [role, setRole] = useState("");
 
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<AdminPanel />}>
-          <Route path="parking" element={<AdminParking />} />
-        </Route>
-      </Routes>
+      <UserContext.Provider value={{ role, setRole, user, setUser }}>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login/user" element={<LoginUser />} />
+          <Route path="/login/employee" element={<LoginEmployee />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<AdminPanel />}>
+            <Route path="parkings" element={<AdminParkings />} />
+          </Route>
+          <Route path="/user" element={<UserPanel />}>
+            <Route path="reservations" element={<UserReservations />} />
+          </Route>
+        </Routes>
+      </UserContext.Provider>
     </>
   );
 }
