@@ -37,7 +37,7 @@ function LoginEmployee() {
                 <Form className="needs-validation" onSubmit={submitHandler}>
                   <Form.Group className="was-validated mb-4">
                     <Form.Label className="font-weight-bold" htmlFor="cedula">
-                      Cédula de ciudadanía
+                      Cédula de Ciudadanía
                     </Form.Label>
                     <Form.Control
                       className="form-control"

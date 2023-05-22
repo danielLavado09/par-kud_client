@@ -1,13 +1,21 @@
-import { lazy, Suspense, useRef, useState } from "react";
+import "./Login.css";
+import { lazy, Suspense, useRef, useState, useContext } from "react";
 import { Container, Row, Col, Card, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import { UserContext } from "../../context/UserContext";
 const ReCAPTCHA = lazy(() => import("react-google-recaptcha"));
 
 function Register() {
   const navigate = useNavigate();
+  const { role, setRole, user, setUser } = useContext(UserContext);
 
   const [isValidCaptcha, setIsValidCaptcha] = useState(false);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [identityCard, setIdentityCard] = useState("");
+  const [email, setEmail] = useState("");
 
   const captcha = useRef(null);
 
@@ -18,12 +26,47 @@ function Register() {
     }
   }
 
-  const submitHandler = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isValidCaptcha) {
-      console.log("hola");
-      return navigate("/user");
+    if (isValidCaptcha && !role && !user) {
+      try {
+        // Realizar solicitud al backend para registrar al usuario
+        const response = await fetch("http://localhost:3000/user/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            userName,
+            identityCard,
+            email,
+          }),
+        });
+
+        if (response.ok) {
+          // Obtener el token de la respuesta
+          const data = await response.json();
+          const token = data.token;
+
+          // Guardar el token en el almacenamiento local (localStorage o sessionStorage)
+          localStorage.setItem("token", token);
+
+          // Redirigir al usuario a la página de inicio
+          setRole("user");
+          setUser(data.user);
+          navigate("/user");
+        } else {
+          // Manejar el caso de error en la respuesta
+          throw new Error("Error en el registro de usuario");
+        }
+      } catch (error) {
+        setRole(null);
+        alert(error.message);
+        console.error(error);
+      }
     } else {
       alert("Complete el reCAPTCHA antes de continuar.");
     }
@@ -39,28 +82,38 @@ function Register() {
                 Registrarse
               </Card.Header>
               <Card.Body>
-                <Form onSubmit={submitHandler}>
+                <Form onSubmit={handleSubmit}>
                   <Row>
                     <Col md={6}>
                       <Form.Group className="was-validated mb-4">
                         <Form.Label
                           className="form-label font-weight-bold"
-                          htmlFor="nombre"
+                          htmlFor="firstName"
                         >
                           Nombre
                         </Form.Label>
-                        <Form.Control type="text" id="nombre" required />
+                        <Form.Control
+                          type="text"
+                          id="firstName"
+                          required
+                          onChange={(e) => setFirstName(e.target.value)}
+                        />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="was-validated mb-4">
                         <Form.Label
                           className="form-label font-weight-bold"
-                          htmlFor="apellido"
+                          htmlFor="lastName"
                         >
                           Apellido
                         </Form.Label>
-                        <Form.Control type="text" id="apellido" required />
+                        <Form.Control
+                          type="text"
+                          id="lastName"
+                          required
+                          onChange={(e) => setLastName(e.target.value)}
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
@@ -69,23 +122,17 @@ function Register() {
                       <Form.Group className="was-validated mb-4">
                         <Form.Label
                           className="form-label font-weight-bold"
-                          htmlFor="cedula"
+                          htmlFor="userName"
                         >
-                          Cédula
+                          Nombre de Usuario
                         </Form.Label>
-                        <Form.Control type="number" id="cedula" required />
+                        <Form.Control
+                          type="text"
+                          id="userName"
+                          required
+                          onChange={(e) => setUserName(e.target.value)}
+                        />
                       </Form.Group>
-                      <Form.Group className="was-validated mb-4">
-                        <Form.Label
-                          className="form-label font-weight-bold"
-                          htmlFor="password"
-                        >
-                          Contraseña
-                        </Form.Label>
-                        <Form.Control type="password" id="password" required />
-                      </Form.Group>
-                    </Col>
-                    <Col md={6}>
                       <Form.Group className="was-validated mb-4">
                         <Form.Label
                           className="form-label font-weight-bold"
@@ -93,7 +140,28 @@ function Register() {
                         >
                           Correo Electrónico
                         </Form.Label>
-                        <Form.Control type="email" id="email" required />
+                        <Form.Control
+                          type="email"
+                          id="email"
+                          required
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="was-validated mb-4">
+                        <Form.Label
+                          className="form-label font-weight-bold"
+                          htmlFor="identityCard"
+                        >
+                          Cedula de Ciudadanía
+                        </Form.Label>
+                        <Form.Control
+                          type="number"
+                          id="identityCard"
+                          required
+                          onChange={(e) => setIdentityCard(e.target.value)}
+                        />
                       </Form.Group>
                     </Col>
                   </Row>

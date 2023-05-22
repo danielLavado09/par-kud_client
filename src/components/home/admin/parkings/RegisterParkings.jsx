@@ -6,29 +6,24 @@ function RegisterParkings() {
     const form = event.target;
     const formData = new FormData(form);
 
-    formData.append("name", form.elements["formNombre"].value);
-    formData.append("city", form.elements["formCiudad"].value);
-    formData.append("address", form.elements["formDireccion"].value);
-    formData.append("slots", form.elements["formEspacios"].value);
+    formData.append("name", form.elements["formName"].value);
+    formData.append("city", form.elements["formCity"].value);
+    formData.append("address", form.elements["formAddress"].value);
+    formData.append("slots", form.elements["formSlots"].value);
     formData.append(
-      "sedan_hourly_rate",
-      form.elements["formTarifaSedan"].value
+      "sedanHourlyRate",
+      form.elements["formSedanHourlyRate"].value
     );
-    formData.append("suv_hourly_rate", form.elements["formTarifaSUV"].value);
+    formData.append("suvHourlyRate", form.elements["formSuvHourlyRate"].value);
     formData.append(
-      "motorcycle_hourly_rate",
-      form.elements["formTarifaMotocicletas"].value
+      "motorcycleHourlyRate",
+      form.elements["formMotorcycleHourlyRate"].value
     );
-    formData.append("opening_time", form.elements["formHoraApertura"].value);
-    formData.append("closing_time", form.elements["formHoraCierre"].value);
-    formData.append(
-      "is_covered",
-      form.elements["formParqueaderoCubierto"].checked
-    );
+    formData.append("openingTime", form.elements["formOpeningTime"].value);
+    formData.append("closingTime", form.elements["formClosingTime"].value);
+    formData.append("isCovered", form.elements["formIsCovered"].checked);
 
-    console.log(form.elements["formParqueaderoCubierto"].checked);
-
-    const fileInput = form.elements["formImagenParqueadero"];
+    const fileInput = form.elements["formImg"];
     if (fileInput.files.length > 0) {
       formData.append("image", fileInput.files[0]);
     }
@@ -67,35 +62,35 @@ function RegisterParkings() {
                 <Col md={6}>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formNombre"
+                    controlId="formName"
                   >
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formCiudad"
+                    controlId="formCity"
                   >
                     <Form.Label>Ciudad</Form.Label>
                     <Form.Control type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formDireccion"
+                    controlId="formAddress"
                   >
                     <Form.Label>Dirección</Form.Label>
                     <Form.Control type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formEspacios"
+                    controlId="formSlots"
                   >
                     <Form.Label>Espacios del parqueadero</Form.Label>
                     <Form.Control type="number" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formTarifaSedan"
+                    controlId="formSedanHourlyRate"
                   >
                     <Form.Label>Tarifa para vehículos Sedan</Form.Label>
                     <Form.Control type="text" />
@@ -105,35 +100,35 @@ function RegisterParkings() {
                 <Col md={6}>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formTarifaSUV"
+                    controlId="formSuvHourlyRate"
                   >
                     <Form.Label>Tarifa para vehículos SUV</Form.Label>
                     <Form.Control type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formTarifaMotocicletas"
+                    controlId="formMotorcycleHourlyRate"
                   >
                     <Form.Label>Tarifa para motocicletas</Form.Label>
                     <Form.Control type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formHoraApertura"
+                    controlId="formOpeningTime"
                   >
                     <Form.Label>Hora de apertura</Form.Label>
                     <Form.Control type="time" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formHoraCierre"
+                    controlId="formClosingTime"
                   >
                     <Form.Label>Hora de cierre</Form.Label>
                     <Form.Control type="time" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
-                    controlId="formImagenParqueadero"
+                    controlId="formImg"
                   >
                     <Form.Label>Cargar imagen del parqueadero</Form.Label>
                     <Form.Control type="file" />
@@ -141,7 +136,7 @@ function RegisterParkings() {
                   <Form.Check
                     className="mb-4"
                     type="switch"
-                    id="formParqueaderoCubierto"
+                    id="formIsCovered"
                     label="¿Parqueadero cubierto?"
                   />
                 </Col>
