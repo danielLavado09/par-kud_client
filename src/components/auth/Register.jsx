@@ -2,31 +2,31 @@ import { lazy, Suspense, useRef, useState } from "react";
 import { Container, Row, Col, Card, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-const ReCAPTCHA = lazy(() => import("react-google-recaptcha"));
+// const ReCAPTCHA = lazy(() => import("react-google-recaptcha"));
 
 function Register() {
   const navigate = useNavigate();
 
-  const [isValidCaptcha, setIsValidCaptcha] = useState(false);
+  //const [isValidCaptcha, setIsValidCaptcha] = useState(false);
 
-  const captcha = useRef(null);
+  //const captcha = useRef(null);
 
-  async function onChange() {
-    const value = await captcha.current.getValue();
-    if (value) {
-      setIsValidCaptcha(true);
-    }
-  }
+  // async function onChange() {
+  //   const value = await captcha.current.getValue();
+  //   if (value) {
+  //     setIsValidCaptcha(true);
+  //   }
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (isValidCaptcha) {
-      console.log("hola");
-      return navigate("/user");
-    } else {
-      alert("Complete el reCAPTCHA antes de continuar.");
-    }
+    // if (isValidCaptcha) {
+    //   console.log("hola");
+    return navigate("/user");
+    // } else {
+    //   alert("Complete el reCAPTCHA antes de continuar.");
+    // }
   };
 
   return (
@@ -105,13 +105,9 @@ function Register() {
                       alignItems: "center",
                     }}
                   >
-                    <Suspense fallback={<div>Cargando ReCAPTCHA...</div>}>
-                      <ReCAPTCHA
-                        ref={captcha}
-                        sitekey={import.meta.env.VITE_RECAPTCHA_SITEKEY}
-                        onChange={onChange}
-                      />
-                    </Suspense>
+                    <Suspense
+                      fallback={<div>Cargando ReCAPTCHA...</div>}
+                    ></Suspense>
                   </div>
 
                   <input

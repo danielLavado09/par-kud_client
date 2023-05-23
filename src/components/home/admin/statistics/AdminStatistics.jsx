@@ -1,7 +1,7 @@
+import Verticalbar from "../../../stats/Verticalbar";
+
 function AdminStatistics() {
-  return (
-    <div>AdminStatistics</div>
-  )
+  return <Verticalbar></Verticalbar>;
 }
 
-export default AdminStatistics
+export default AdminStatistics;

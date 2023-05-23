@@ -1,7 +1,7 @@
 import "./Login.css";
 import { lazy, Suspense, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-const ReCAPTCHA = lazy(() => import("react-google-recaptcha"));
+//const ReCAPTCHA = lazy(() => import("react-google-recaptcha"));
 import { UserContext } from "../../context/UserContext";
 import { Container, Row, Card, Form, Button } from "react-bootstrap";
 
@@ -10,11 +10,11 @@ function LoginEmployee() {
 
   const { role, setRole } = useContext(UserContext);
 
-  const captcha = useRef(null);
+  //const captcha = useRef(null);
 
-  function onChange() {
-    console.log("Captcha value:", captcha.current.getValue());
-  }
+  // function onChange() {
+  //   console.log("Captcha value:", captcha.current.getValue());
+  // }
 
   const submitHandler = (e) => {
     if (!role) {
@@ -65,13 +65,9 @@ function LoginEmployee() {
                       alignItems: "center",
                     }}
                   >
-                    <Suspense fallback={<div>Cargando ReCAPTCHA...</div>}>
-                      <ReCAPTCHA
-                        ref={captcha}
-                        sitekey={import.meta.env.VITE_RECAPTCHA_SITEKEY}
-                        onChange={onChange}
-                      />
-                    </Suspense>
+                    <Suspense
+                      fallback={<div>Cargando ReCAPTCHA...</div>}
+                    ></Suspense>
                   </Form.Group>
 
                   <Button
