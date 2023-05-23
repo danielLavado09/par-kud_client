@@ -1,16 +1,10 @@
 .bg-container {
-    background-image: url('bg-parking-ref.jpeg');
+    background-image: url('/bg-parking-ref.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     min-height: 100vh;
     display: flex;
-}
-
-.card-header-gradient {
-    
-    color: black;
-    /* para que el texto sea legible sobre el degradado */
 }
 
 h2.card-header {

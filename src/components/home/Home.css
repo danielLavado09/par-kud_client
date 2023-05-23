@@ -1,0 +1,41 @@
+.bg-home-container {
+    background-image: url('/bg-bog-ref.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 100vh;
+    display: flex;
+}
+
+.info-container {
+    padding-top: 56px;
+}
+
+.expanding-heading {
+    font-size: 5em;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    transition: font-size 1ms;
+}
+
+.shaking:hover {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

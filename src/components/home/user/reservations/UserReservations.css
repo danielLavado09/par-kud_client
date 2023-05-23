@@ -1,0 +1,13 @@
+.user-reservations {
+    padding-top: 56px;
+}
+
+.container-user-reservations {
+    justify-content: center;
+}
+
+.img-user-reservation {
+    width: 380px;
+    height: 380px;
+    object-fit: cover;
+}
