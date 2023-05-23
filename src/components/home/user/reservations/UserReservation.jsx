@@ -1,16 +1,64 @@
-import { useState, useEffect } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { useState, useEffect, useContext } from "react";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
+import { UserContext } from "../../../../context/UserContext";
 
 function UserReservation() {
+  const { user } = useContext(UserContext);
+
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [parkings, setParkings] = useState([]);
   const [selectedParking, setSelectedParking] = useState("");
   const [parkingData, setParkingData] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
+  const [notification, setNotification] = useState("");
+  const [notificationType, setNotificationType] = useState("primary");
 
   useEffect(() => {
     getCities();
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (selectedParking && selectedCity) {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/reservation/create",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              identityCard: user.identityCard,
+              parkingId: selectedParking,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+
+          setShowAlert(true);
+          setNotificationType("success");
+          setNotification("Reserva exitosa.");
+        } else {
+          throw new Error("Error al crear la reserva");
+        }
+      } catch (error) {
+        setShowAlert(true);
+        setNotificationType("danger");
+        setNotification("Error al hacer la reserva.");
+        console.error(error);
+      }
+    } else {
+      setNotification(
+        "Seleccione una ciudad y un parqueadero antes de continuar"
+      );
+    }
+  };
 
   const getCities = async () => {
     try {
@@ -25,6 +73,7 @@ function UserReservation() {
   const handleCityChange = async (event) => {
     const city = event.target.value;
     setSelectedCity(city);
+    setShowAlert(false);
     setSelectedParking(null);
 
     try {
@@ -40,6 +89,7 @@ function UserReservation() {
 
   const handleParkingChange = async (event) => {
     const parkingId = event.target.value;
+    setShowAlert(false);
     setSelectedParking(parkingId);
 
     try {
@@ -55,7 +105,7 @@ function UserReservation() {
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-4">
           <Form.Label className="font-weight-bold">
             Seleccione una ciudad:
@@ -77,21 +127,30 @@ function UserReservation() {
           <Form.Control as="select" onChange={handleParkingChange}>
             <option value="">Seleccione un parqueadero</option>
             {parkings.map((parking) => (
-              <option key={parking.parking_id} value={parking.parking_id}>
+              <option key={parking.parkingId} value={parking.parkingId}>
                 {parking.name}
               </option>
             ))}
           </Form.Control>
         </Form.Group>
 
+        {selectedParking && selectedCity && showAlert && (
+          <Alert
+            variant={notificationType}
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            {notification}
+          </Alert>
+        )}
         {selectedParking && selectedCity && (
           <Form.Group>
             <Row>
               <Col>
-                {parkingData.img_url && (
+                {parkingData.imgUrl && (
                   <img
                     className="rounded shadow img-user-reservation mb-4"
-                    src={`http://localhost:3000/uploads/${parkingData.img_url}`}
+                    src={`http://localhost:3000/uploads/${parkingData.imgUrl}`}
                     alt="Imagen del parqueadero"
                   />
                 )}
@@ -103,20 +162,28 @@ function UserReservation() {
                 <p>Dirección: {parkingData.address}</p>
                 <p>Campos totales: {parkingData.slots}</p>
                 <p>
-                  Parqueadero cubierto: {parkingData.is_covered ? "Sí" : "No"}
+                  Parqueadero cubierto: {parkingData.isCovered ? "Sí" : "No"}
                 </p>
 
                 <h3 className="mt-5 font-weight-bold">Horarios</h3>
-                <p>Abre: {parkingData?.opening_time?.substring(0, 5)}</p>
-                <p>Cierra: {parkingData?.closing_time?.substring(0, 5)}</p>
+                <p>Abre: {parkingData?.openingTime?.substring(0, 5)}</p>
+                <p>Cierra: {parkingData?.closingTime?.substring(0, 5)}</p>
               </Col>
               <Col>
-                <h3 className="font-weight-bold">Tarifas</h3>
-                <p>Sedan: ${parkingData.sedan_hourly_rate}</p>
-                <p>SUV: ${parkingData.suv_hourly_rate}</p>
-                <p>Motocicletas: ${parkingData.motorcycle_hourly_rate}</p>
+                <h3 className="font-weight-bold">Tarifas x hora</h3>
+                <p>Sedan: ${parkingData.sedanHourlyRate}</p>
+                <p>SUV: ${parkingData.suvHourlyRate}</p>
+                <p>Motocicletas: ${parkingData.motorcycleHourlyRate}</p>
               </Col>
             </Row>
+
+            <Button
+              variant="danger"
+              type="submit"
+              className="font-weight-bold btn-lg btn w-100"
+            >
+              Reservar ahora
+            </Button>
           </Form.Group>
         )}
       </Form>

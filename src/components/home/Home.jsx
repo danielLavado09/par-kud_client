@@ -8,7 +8,7 @@ function Home() {
           <h1 className="expanding-heading">Bienvenido a PAR-KUD</h1>
           <div className="card shaking">
             <div className="card-header">
-              <h5 className="card-title">Quienes somos</h5>
+              <h5 className="card-title">En construcción...</h5>
             </div>
             <div className="card-body">
               <p className="card-text">En construcción...</p>
