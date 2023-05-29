@@ -7,10 +7,11 @@ import SignedInMenu from "./SignedInMenu";
 import SignedOutMenu from "./SignedOutMenu";
 
 function NavigationBar() {
-  const { role, setRole } = useContext(UserContext);
+  const { role, setRole, setUser } = useContext(UserContext);
 
   const logout = () => {
     setRole(null);
+    setUser(null);
   };
 
   const menu = role ? <SignedInMenu logout={logout} /> : <SignedOutMenu />;

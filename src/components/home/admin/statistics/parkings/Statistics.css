@@ -1,0 +1,12 @@
+.statistics-container {
+    width: 100vh;
+    flex-direction: column;
+}
+
+#export-pdf {
+    width: 100px;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 15px;
+    margin: auto;
+}
