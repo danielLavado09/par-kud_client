@@ -24,7 +24,7 @@ function UserReservation() {
     if (selectedParking && selectedCity) {
       try {
         const response = await fetch(
-          "http://localhost:3000/reservation/create",
+          "http://localhost:3000/reservations/create",
           {
             method: "POST",
             headers: {
