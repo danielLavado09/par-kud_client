@@ -30,7 +30,7 @@ function AdminUsers() {
                 className={activeTab === 2 ? "active" : ""}
                 onClick={() => handleTabClick(2)}
               >
-                Actualizar
+                Actualizar Reservas
               </Nav.Link>
             </Nav.Item>
           </Nav>

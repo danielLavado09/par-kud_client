@@ -57,10 +57,10 @@ function Register() {
           // Redirigir al usuario a la página de inicio
           setRole("user");
           setUser(data.user);
-          navigate("/user");
+          navigate("/user/new-password");
         } else {
           // Manejar el caso de error en la respuesta
-          throw new Error("Error en el registro de usuario");
+          throw new Error("Error al registrar usuario.");
         }
       } catch (error) {
         setRole(null);
@@ -75,7 +75,7 @@ function Register() {
   return (
     <>
       <div className="bg-container">
-        <Container className="mt-3 d-flex align-items-center justify-content-center">
+        <Container className="col-5 mt-3 d-flex align-items-center justify-content-center">
           <Row className="align-items-stretch">
             <Card bg="white" text="dark">
               <Card.Header className="card-big-text border-dark text-black font-weight-bold">
@@ -133,6 +133,8 @@ function Register() {
                           onChange={(e) => setUserName(e.target.value)}
                         />
                       </Form.Group>
+                    </Col>
+                    <Col md={6}>
                       <Form.Group className="was-validated mb-4">
                         <Form.Label
                           className="form-label font-weight-bold"

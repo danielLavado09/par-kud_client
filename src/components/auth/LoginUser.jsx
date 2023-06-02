@@ -51,10 +51,14 @@ function LoginUser() {
           // Redirigir al usuario a la página de inicio
           setRole("user");
           setUser(data.user);
-          navigate("/user");
+          if (data.user.passwordChanged) {
+            navigate("/user/reservations");
+          } else {
+            navigate("/user/new-password");
+          }
         } else {
           // Manejar el caso de error en la respuesta
-          throw new Error("Error al iniciar sesión");
+          throw new Error("Error al iniciar sesión.");
         }
       } catch (error) {
         setRole(null);
@@ -63,7 +67,6 @@ function LoginUser() {
       }
     } else {
       alert("Complete el reCAPTCHA antes de continuar.");
-      window.location.reload();
     }
   };
 

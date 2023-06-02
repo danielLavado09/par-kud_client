@@ -1,6 +1,7 @@
 import { Container, Card, Nav } from "react-bootstrap";
 import { useState } from "react";
 import ParkingsStatistics from "./parkings/ParkingsStatistics";
+import UsersStatistics from "./users/UsersStatistics";
 
 function AdminStatistics() {
   const [activeTab, setActiveTab] = useState(1);
@@ -36,12 +37,7 @@ function AdminStatistics() {
         </Card.Header>
         <Card.Body>
           {activeTab === 1 && <ParkingsStatistics />}
-          {activeTab === 2 && (
-            <div>
-              <h5 className="card-title">En construcción...</h5>
-              <p className="card-text">En construcción...</p>
-            </div>
-          )}
+          {activeTab === 2 && <UsersStatistics />}
         </Card.Body>
       </Card>
     </Container>

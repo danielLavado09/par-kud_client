@@ -17,6 +17,7 @@ import AdminUsers from "./components/home/admin/users/AdminUsers";
 
 import UserPanel from "./components/home/user/UserPanel";
 import UserReservations from "./components/home/user/reservations/UserReservations";
+import UserChangePassword from "./components/home/user/UserChangePassword";
 
 import { UserContext } from "./context/UserContext";
 
@@ -41,6 +42,7 @@ function App() {
           </Route>
           <Route path="/user" element={<UserPanel />}>
             <Route path="reservations" element={<UserReservations />} />
+            <Route path="new-password" element={<UserChangePassword />} />
           </Route>
         </Routes>
       </UserContext.Provider>

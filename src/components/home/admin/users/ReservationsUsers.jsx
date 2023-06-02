@@ -17,7 +17,7 @@ function ReservationsUsers() {
   const [selectedStatus, setSelectedStatus] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const statusOptions = ["Pending", "Confirmed", "Cancelled"];
+  const statusOptions = ["Confirmed", "Cancelled"];
 
   useEffect(() => {
     getCities();

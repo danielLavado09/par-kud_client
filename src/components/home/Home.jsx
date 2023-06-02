@@ -1,31 +1,33 @@
 import "./Home.css";
+import { Container, Card } from "react-bootstrap";
 
 function Home() {
   return (
     <>
       <div className="bg-home-container">
-        <div className="info-container container mt-5">
-          <h1 className="expanding-heading">Bienvenido a PAR-KUD</h1>
-          <div className="card shaking">
-            <div className="card-header">
-              <h3 className="card-title">Hola!</h3>
-            </div>
-            <div className="card-body">
-              <p className="card-text">
+        <div className="video-background">
+          <video autoPlay loop muted className="video">
+            <source src="/hdvideo.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <Container className="mt-5">
+          <h1 className="expanding-heading">Bienvenido a PAR-KUD </h1>
+          <Card className="shaking shadow-lg rounded-4">
+            <Card.Header>
+              <h2>¿Qué tenemos para ti?</h2>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text className="text-justify">
                 En PAK-UD nos enorgullece brindarte una experiencia excepcional
                 en la reserva de parqueaderos. Queremos facilitar tu vida,
                 ahorrarte tiempo y ofrecerte la tranquilidad de encontrar un
                 lugar seguro para estacionar tu vehículo. Nuestra plataforma te
                 permite buscar y reservar parqueaderos de forma rápida y
-                sencilla. Ya sea que necesites un espacio para unas pocas horas
-                o durante varios días, PAK-UD está aquí para cubrir tus
-                necesidades. Además, contamos con una amplia red de parqueaderos
-                verificados en ubicaciones estratégicas, para que siempre
-                encuentres una opción conveniente cerca de ti.
-              </p>
-            </div>
-          </div>
-        </div>
+                sencilla en casi toda Colombia.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Container>
       </div>
     </>
   );

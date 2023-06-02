@@ -20,7 +20,7 @@ function LoginEmployee() {
     if (!role) {
       e.preventDefault();
       setRole("admin");
-      return navigate("/admin");
+      return navigate("/admin/statistics");
     }
   };
 

@@ -1,7 +1,7 @@
+import "./UserPanel.css";
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/Sidebar";
-
 import { UserContext } from "../../../context/UserContext";
 
 function UserPanel() {

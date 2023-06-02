@@ -1,25 +1,42 @@
 .bg-home-container {
-    background-image: url('/bg-bog-ref.jpg');
+    
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     min-height: 100vh;
     display: flex;
-}
-
-.info-container {
     padding-top: 56px;
 }
 
 .expanding-heading {
     font-size: 5em;
     color: white;
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 6px 6px 8px black;
     transition: font-size 1ms;
+    -webkit-text-stroke: 4px;
+}
+
+.shaking {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: rgba(47, 47, 47, 0.9);
+    padding: 20px;
 }
 
 .shaking:hover {
     animation: shake 0.5s;
+}
+
+.shaking p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 2px 2px 4px black;
+}
+
+.shaking h2 {
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.8); 
+    text-shadow: 2px 2px 4px black;
 }
 
 @keyframes shake {
@@ -39,3 +56,18 @@
         transform: translateX(0);
     }
 }
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }

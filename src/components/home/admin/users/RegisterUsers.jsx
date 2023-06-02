@@ -45,6 +45,11 @@ function RegisterUsers() {
         setShowAlert(true);
         setNotificationType("success");
         setNotification("Usuario creado.");
+        setFirstName("");
+        setLastName("");
+        setUserName("");
+        setIdentityCard("");
+        setEmail("");
       } else {
         throw new Error("Error al crear usuario.");
       }
@@ -69,21 +74,27 @@ function RegisterUsers() {
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formFirstName"
-                    required
-                    onChange={(e) => setFirstName(e.target.value)}
                   >
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control required type="text" />
+                    <Form.Control
+                      onChange={(e) => setFirstName(e.target.value)}
+                      value={firstName}
+                      required
+                      type="text"
+                    />
                   </Form.Group>
 
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formLastName"
-                    required
-                    onChange={(e) => setLastName(e.target.value)}
                   >
                     <Form.Label>Apellido</Form.Label>
-                    <Form.Control required type="text" />
+                    <Form.Control
+                      onChange={(e) => setLastName(e.target.value)}
+                      value={lastName}
+                      required
+                      type="text"
+                    />
                   </Form.Group>
 
                   <Col md={6}></Col>
@@ -91,10 +102,14 @@ function RegisterUsers() {
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formUserName"
-                    onChange={(e) => setUserName(e.target.value)}
                   >
                     <Form.Label>Nombre de Usuario</Form.Label>
-                    <Form.Control required type="text" />
+                    <Form.Control
+                      onChange={(e) => setUserName(e.target.value)}
+                      value={userName}
+                      required
+                      type="text"
+                    />
                   </Form.Group>
                 </Col>
 
@@ -102,19 +117,27 @@ function RegisterUsers() {
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formEmail"
-                    onChange={(e) => setEmail(e.target.value)}
                   >
                     <Form.Label>Correo Electrónico</Form.Label>
-                    <Form.Control required type="email" />
+                    <Form.Control
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      required
+                      type="email"
+                    />
                   </Form.Group>
 
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formIdentityCard"
-                    onChange={(e) => setIdentityCard(e.target.value)}
                   >
                     <Form.Label>Cedula de Ciudadanía</Form.Label>
-                    <Form.Control required type="number" />
+                    <Form.Control
+                      onChange={(e) => setIdentityCard(e.target.value)}
+                      value={identityCard}
+                      required
+                      type="number"
+                    />
                   </Form.Group>
                 </Col>
               </Row>
