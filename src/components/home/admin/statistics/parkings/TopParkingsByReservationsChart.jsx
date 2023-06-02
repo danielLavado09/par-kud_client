@@ -10,9 +10,10 @@ import {
   Title,
   Tooltip,
   Legend,
+  BarElement,
 } from "chart.js";
 
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -21,9 +22,11 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  BarElement
 );
 
+// eslint-disable-next-line react/prop-types
 function TopParkingsByReservations() {
   const [chart, setChart] = useState({});
 
@@ -41,10 +44,10 @@ function TopParkingsByReservations() {
   console.log("chart", chart);
 
   var data = {
-    labels: chart?.parkings?.map((x) => x.city),
+    labels: chart?.parkings?.map((x) => x.name),
     datasets: [
       {
-        label: "Ciudades",
+        label: "Parqueaderos",
         data: chart?.parkings?.map((x) => x.reservationCount),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -79,7 +82,7 @@ function TopParkingsByReservations() {
 
   return (
     <div>
-      <Line data={data} height={400} options={options} />
+      <Bar data={data} height={400} options={options} />
     </div>
   );
 }

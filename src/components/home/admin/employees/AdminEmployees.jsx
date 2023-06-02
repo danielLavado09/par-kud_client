@@ -1,5 +1,6 @@
 import { Container, Card, Nav } from "react-bootstrap";
 import { useState } from "react";
+import RegisterEmployees from "./RegisterEmployees";
 
 function AdminEmployees() {
   const [activeTab, setActiveTab] = useState(1);
@@ -34,7 +35,7 @@ function AdminEmployees() {
           </Nav>
         </Card.Header>
         <Card.Body>
-          {activeTab === 1 && (<h1></h1>)}
+          {activeTab === 1 && (<RegisterEmployees />)}
           {activeTab === 2 && (
             <div>
               <h5 className="card-title">Contenido de la pestaña 2</h5>

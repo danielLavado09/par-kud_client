@@ -1,5 +1,7 @@
 import { Container, Card, Nav } from "react-bootstrap";
 import { useState } from "react";
+import RegisterUsers from "./RegisterUsers";
+import ReservationsUsers from "./ReservationsUsers";
 
 function AdminUsers() {
   const [activeTab, setActiveTab] = useState(1);
@@ -34,15 +36,8 @@ function AdminUsers() {
           </Nav>
         </Card.Header>
         <Card.Body>
-          {activeTab === 1 && <h1></h1>}
-          {activeTab === 2 && (
-            <div>
-              <h5 className="card-title">Contenido de la pestaña 2</h5>
-              <p className="card-text">
-                Praesent tincidunt metus vel vehicula luctus.
-              </p>
-            </div>
-          )}
+          {activeTab === 1 && <RegisterUsers />}
+          {activeTab === 2 && <ReservationsUsers />}
         </Card.Body>
       </Card>
     </Container>
