@@ -8,13 +8,14 @@ import { Nav } from "react-bootstrap";
 function Sidebar() {
   const { role } = useContext(UserContext);
 
-  const menu = role === "admin" ? <SidebarAdmin /> : <SidebarUser />;
+  const menu =
+    role === "admin" || role === "employee" ? (
+      <SidebarAdmin />
+    ) : (
+      <SidebarUser />
+    );
 
-  return (
-    <Nav className="sidebar flex-column bg-dark text-white">
-      {menu}
-    </Nav>
-  );
+  return <Nav className="sidebar flex-column bg-dark text-white">{menu}</Nav>;
 }
 
 export default Sidebar;

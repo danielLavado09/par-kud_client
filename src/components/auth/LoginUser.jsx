@@ -8,12 +8,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 function LoginUser() {
   const navigate = useNavigate();
   const { role, setRole, user, setUser } = useContext(UserContext);
-
   const [isValidCaptcha, setIsValidCaptcha] = useState(false);
-
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
   const captcha = useRef(null);
 
   async function onChange() {

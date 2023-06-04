@@ -1,5 +1,5 @@
 import "./Login.css";
-import { lazy, Suspense, useRef, useContext } from "react";
+import { lazy, Suspense, useRef, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const ReCAPTCHA = lazy(() => import("react-google-recaptcha"));
 import { UserContext } from "../../context/UserContext";
@@ -7,20 +7,61 @@ import { Container, Row, Card, Form, Button } from "react-bootstrap";
 
 function LoginEmployee() {
   const navigate = useNavigate();
-
-  const { role, setRole } = useContext(UserContext);
+  const { role, setRole, user, setUser } = useContext(UserContext);
+  const [isValidCaptcha, setIsValidCaptcha] = useState(false);
+  const [identityCard, setIdentityCard] = useState("");
+  const [password, setPassword] = useState("");
 
   const captcha = useRef(null);
 
-  function onChange() {
-    console.log("Captcha value:", captcha.current.getValue());
+  async function onChange() {
+    const value = await captcha.current.getValue();
+    if (value) {
+      setIsValidCaptcha(true);
+    }
   }
 
-  const submitHandler = (e) => {
-    if (!role) {
-      e.preventDefault();
-      setRole("admin");
-      return navigate("/admin/statistics");
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    if (isValidCaptcha && !role && !user) {
+      try {
+        // Realizar solicitud al backend para registrar al usuario
+        const response = await fetch("http://localhost:3000/employee/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            identityCard,
+            password,
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const token = data.token;
+
+          localStorage.setItem("token", token);
+
+          if (data.employee.email === "parkud.udcode@outlook.com") {
+            setRole("admin");
+            setUser(data.employee);
+            navigate("/admin/statistics");
+          } else {
+            setRole("employee");
+            setUser(data.employee);
+            navigate("/admin/users");
+          }
+        } else {
+          throw new Error("Error al iniciar sesión.");
+        }
+      } catch (error) {
+        setRole(null);
+        alert(error.message);
+      }
+    } else {
+      alert("Complete el reCAPTCHA antes de continuar.");
     }
   };
 
@@ -44,6 +85,7 @@ function LoginEmployee() {
                       type="number"
                       id="cedula"
                       required
+                      onChange={(e) => setIdentityCard(e.target.value)}
                     />
                   </Form.Group>
                   <Form.Group className="was-validated mb-4">
@@ -55,6 +97,7 @@ function LoginEmployee() {
                       type="password"
                       id="password"
                       required
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </Form.Group>
                   <Form.Group

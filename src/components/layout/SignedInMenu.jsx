@@ -11,7 +11,9 @@ function SignedInMenu({ logout }) {
     <>
       {role && user && (
         <Nav.Item>
-          <NavLink className="nav-link">{user.userName}</NavLink>
+          <NavLink className="nav-link">
+            {user.userName || user.firstName}
+          </NavLink>
         </Nav.Item>
       )}
       <Nav.Item>

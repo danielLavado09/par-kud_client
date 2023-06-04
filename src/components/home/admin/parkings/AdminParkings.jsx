@@ -2,6 +2,7 @@ import "./AdminParkings.css";
 import { Container, Card, Nav } from "react-bootstrap";
 import { useState } from "react";
 import RegisterParking from "./RegisterParkings";
+import UpdateParking from "./UpdateParking";
 
 function AdminParkings() {
   const [activeTab, setActiveTab] = useState(1);
@@ -37,14 +38,7 @@ function AdminParkings() {
         </Card.Header>
         <Card.Body>
           {activeTab === 1 && <RegisterParking />}
-          {activeTab === 2 && (
-            <div>
-              <h5 className="card-title">Contenido de la pestaña 2</h5>
-              <p className="card-text">
-                Praesent tincidunt metus vel vehicula luctus.
-              </p>
-            </div>
-          )}
+          {activeTab === 2 && <UpdateParking />}
         </Card.Body>
       </Card>
     </Container>
