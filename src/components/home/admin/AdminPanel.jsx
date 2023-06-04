@@ -11,8 +11,10 @@ function AdminPanel() {
   const { role, setRole } = useContext(UserContext);
 
   useEffect(() => {
-    if (role !== "admin") {
+    console.log(role);
+    if (role !== "admin" && role !== "employee") {
       setRole(null);
+      console.log("hola");
       navigate("/");
     }
   }, [setRole, role, navigate]);

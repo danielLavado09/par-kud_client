@@ -65,35 +65,35 @@ function RegisterParkings() {
                     controlId="formName"
                   >
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control required type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formCity"
                   >
                     <Form.Label>Ciudad</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control required type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formAddress"
                   >
                     <Form.Label>Dirección</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control required type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formSlots"
                   >
                     <Form.Label>Espacios del parqueadero</Form.Label>
-                    <Form.Control type="number" />
+                    <Form.Control required type="number" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formSedanHourlyRate"
                   >
                     <Form.Label>Tarifa para vehículos Sedan</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control required type="text" />
                   </Form.Group>
                 </Col>
 
@@ -103,35 +103,35 @@ function RegisterParkings() {
                     controlId="formSuvHourlyRate"
                   >
                     <Form.Label>Tarifa para vehículos SUV</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control required type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formMotorcycleHourlyRate"
                   >
                     <Form.Label>Tarifa para motocicletas</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control required type="text" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formOpeningTime"
                   >
                     <Form.Label>Hora de apertura</Form.Label>
-                    <Form.Control type="time" />
+                    <Form.Control required type="time" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formClosingTime"
                   >
                     <Form.Label>Hora de cierre</Form.Label>
-                    <Form.Control type="time" />
+                    <Form.Control required type="time" />
                   </Form.Group>
                   <Form.Group
                     className="font-weight-bold mb-4"
                     controlId="formImg"
                   >
                     <Form.Label>Cargar imagen del parqueadero</Form.Label>
-                    <Form.Control type="file" />
+                    <Form.Control required type="file" />
                   </Form.Group>
                   <Form.Check
                     className="mb-4"
@@ -143,7 +143,7 @@ function RegisterParkings() {
               </Row>
 
               <Button
-                variant="primary"
+                variant="success"
                 type="submit"
                 className="font-weight-bold btn-lg btn w-100"
               >

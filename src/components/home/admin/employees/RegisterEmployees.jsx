@@ -35,7 +35,7 @@ function RegisterEmployees() {
     if (selectedParking && selectedCity) {
       try {
         const response = await fetch(
-          "http://localhost:3000/employees/register",
+          "http://localhost:3000/employee/register",
           {
             method: "POST",
             headers: {
@@ -46,7 +46,7 @@ function RegisterEmployees() {
               lastName,
               identityCard,
               email,
-              parkingId: selectedParking,
+              parkingId: selectedParking.parkingId,
             }),
           }
         );
@@ -59,7 +59,7 @@ function RegisterEmployees() {
           setNotificationType("success");
           setNotification("Empleado creado.");
         } else {
-          throw new Error("Error al crear la reserva");
+          throw new Error("Error al registrar empleado.");
         }
       } catch (error) {
         setShowAlert(true);
@@ -222,7 +222,7 @@ function RegisterEmployees() {
                 </Alert>
               )}
               <Button
-                variant="primary"
+                variant="success"
                 type="submit"
                 className="font-weight-bold btn-lg btn w-100"
               >

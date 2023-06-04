@@ -45,11 +45,7 @@ function RegisterUsers() {
         setShowAlert(true);
         setNotificationType("success");
         setNotification("Usuario creado.");
-        setFirstName("");
-        setLastName("");
-        setUserName("");
-        setIdentityCard("");
-        setEmail("");
+        resetForm();
       } else {
         throw new Error("Error al crear usuario.");
       }
@@ -58,6 +54,14 @@ function RegisterUsers() {
       setNotificationType("danger");
       setNotification("Error al crear usuario.");
     }
+  };
+
+  const resetForm = () => {
+    setFirstName("");
+    setLastName("");
+    setUserName("");
+    setIdentityCard("");
+    setEmail("");
   };
 
   return (
@@ -151,7 +155,7 @@ function RegisterUsers() {
                 </Alert>
               )}
               <Button
-                variant="primary"
+                variant="success"
                 type="submit"
                 className="font-weight-bold btn-lg btn w-100"
               >

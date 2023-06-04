@@ -7,7 +7,7 @@ import { Container, Row, Card, Form, Button } from "react-bootstrap";
 
 function LoginEmployee() {
   const navigate = useNavigate();
-  const { role, setRole, user, setUser } = useContext(UserContext);
+  const { setRole, setUser } = useContext(UserContext);
   const [isValidCaptcha, setIsValidCaptcha] = useState(false);
   const [identityCard, setIdentityCard] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ function LoginEmployee() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (isValidCaptcha && !role && !user) {
+    if (isValidCaptcha) {
       try {
         // Realizar solicitud al backend para registrar al usuario
         const response = await fetch("http://localhost:3000/employee/login", {
@@ -52,12 +52,14 @@ function LoginEmployee() {
             setRole("employee");
             setUser(data.employee);
             navigate("/admin/users");
+            console.log("hola");
           }
         } else {
           throw new Error("Error al iniciar sesión.");
         }
       } catch (error) {
         setRole(null);
+        setUser(null);
         alert(error.message);
       }
     } else {

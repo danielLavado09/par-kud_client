@@ -5,11 +5,6 @@ function Home() {
   return (
     <>
       <div className="bg-home-container">
-        <div className="video-background">
-          <video autoPlay loop muted className="video">
-            <source src="/hdvideo.mp4" type="video/mp4" />
-          </video>
-        </div>
         <Container className="mt-5">
           <h1 className="expanding-heading">Bienvenido a PAR-KUD </h1>
           <Card className="shaking shadow-lg rounded-4">

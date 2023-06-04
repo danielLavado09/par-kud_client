@@ -43,7 +43,9 @@ function UserReservation() {
 
           setShowAlert(true);
           setNotificationType("success");
-          setNotification("Reserva exitosa.");
+          setNotification(
+            `Tu ID de reserva es: ${data.reservationId} [Anotalo en un lugar que recuerdes, lo necesitarás más adelante]`
+          );
         } else {
           throw new Error("Error al crear la reserva");
         }

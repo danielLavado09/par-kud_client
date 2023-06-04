@@ -2,6 +2,7 @@ import "./UserReservations.css";
 import { useState } from "react";
 import { Nav, Card, Container } from "react-bootstrap";
 import UserReservation from "./UserReservation";
+import UserReservationsList from "./UserReservationsList";
 
 function UserReservations() {
   const [activeTab, setActiveTab] = useState(1);
@@ -37,12 +38,7 @@ function UserReservations() {
         </Card.Header>
         <Card.Body>
           {activeTab === 1 && <UserReservation />}
-          {activeTab === 2 && (
-            <div>
-              <h5 className="card-title">En construcción..</h5>
-              <p className="card-text">En construcción..</p>
-            </div>
-          )}
+          {activeTab === 2 && <UserReservationsList />}
         </Card.Body>
       </Card>
     </Container>

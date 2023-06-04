@@ -11,3 +11,8 @@
     height: 380px;
     object-fit: cover;
 }
+
+.img-extended {
+    height: 248px;
+    object-fit: cover;
+}

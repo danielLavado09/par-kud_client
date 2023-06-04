@@ -23,31 +23,13 @@ function AdminEmployees() {
                 Registrar
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                eventKey={2}
-                className={activeTab === 2 ? "active" : ""}
-                onClick={() => handleTabClick(2)}
-              >
-                Actualizar
-              </Nav.Link>
-            </Nav.Item>
+            <Nav.Item></Nav.Item>
           </Nav>
         </Card.Header>
-        <Card.Body>
-          {activeTab === 1 && (<RegisterEmployees />)}
-          {activeTab === 2 && (
-            <div>
-              <h5 className="card-title">Contenido de la pestaña 2</h5>
-              <p className="card-text">
-                Praesent tincidunt metus vel vehicula luctus.
-              </p>
-            </div>
-          )}
-        </Card.Body>
+        <Card.Body>{activeTab === 1 && <RegisterEmployees />}</Card.Body>
       </Card>
     </Container>
-  )
+  );
 }
 
-export default AdminEmployees
+export default AdminEmployees;

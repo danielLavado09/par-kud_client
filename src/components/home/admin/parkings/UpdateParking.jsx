@@ -67,7 +67,32 @@ function UpdateParking() {
         console.error("Error al registrar el parqueadero");
       }
       form.reset();
-      setSelectedParking(null);
+      resetForm();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!selectedParking) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/parking/delete/${selectedParking}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        resetForm();
+      } else {
+        console.error("Error al eliminar el parqueadero");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -172,6 +197,23 @@ function UpdateParking() {
     setClosingTime(newClosingTime);
   };
 
+  const resetForm = () => {
+    getCities();
+    setSelectedCity("");
+    setSelectedParking("");
+    setParkings([]);
+    setParkingData({});
+    setName("");
+    setCity("");
+    setAddress("");
+    setSlots("");
+    setSedanHourlyRate("");
+    setSuvHourlyRate("");
+    setMotorcycleHourlyRate("");
+    setOpeningTime("");
+    setClosingTime("");
+  };
+
   return (
     <Container className="rounded">
       <div className="d-lg-block">
@@ -210,6 +252,14 @@ function UpdateParking() {
               </Form.Group>
               {selectedCity && selectedParking && (
                 <>
+                  <hr />
+                  {parkingData.imgUrl && (
+                  <img
+                    className="rounded shadow img-extended mb-4 w-100"
+                    src={`http://localhost:3000/uploads/${parkingData.imgUrl}`}
+                    alt="Imagen del parqueadero"
+                  />
+                )}
                   <Row>
                     <Col md={6}>
                       <Form.Group
@@ -218,6 +268,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control
+                          required
                           value={name}
                           onChange={handleNameChange}
                           type="text"
@@ -229,6 +280,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Ciudad</Form.Label>
                         <Form.Control
+                          required
                           value={city}
                           onChange={handleCityNameChange}
                           type="text"
@@ -240,6 +292,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Dirección</Form.Label>
                         <Form.Control
+                          required
                           value={address}
                           onChange={handleAddressChange}
                           type="text"
@@ -251,6 +304,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Espacios del parqueadero</Form.Label>
                         <Form.Control
+                          required
                           value={slots}
                           onChange={handleSlotsChange}
                           type="number"
@@ -262,6 +316,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Tarifa para vehículos Sedan</Form.Label>
                         <Form.Control
+                          required
                           value={sedanHourlyRate}
                           onChange={handleSedanHourlyRateChange}
                           type="text"
@@ -276,6 +331,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Tarifa para vehículos SUV</Form.Label>
                         <Form.Control
+                          required
                           value={suvHourlyRate}
                           onChange={handleSuvHourlyRateChange}
                           type="text"
@@ -287,6 +343,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Tarifa para motocicletas</Form.Label>
                         <Form.Control
+                          required
                           value={motorcycleHourlyRate}
                           onChange={handleMotorcycleHourlyRateChange}
                           type="text"
@@ -298,6 +355,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Hora de apertura</Form.Label>
                         <Form.Control
+                          required
                           value={openingTime}
                           onChange={handleOpeningTimeChange}
                           type="time"
@@ -309,6 +367,7 @@ function UpdateParking() {
                       >
                         <Form.Label>Hora de cierre</Form.Label>
                         <Form.Control
+                          required
                           value={closingTime}
                           onChange={handleClosingTime}
                           type="time"
@@ -319,7 +378,7 @@ function UpdateParking() {
                         controlId="formImg"
                       >
                         <Form.Label>Cargar imagen del parqueadero</Form.Label>
-                        <Form.Control type="file" />
+                        <Form.Control required type="file" />
                       </Form.Group>
                       <Form.Check
                         className="mb-4"
@@ -331,11 +390,19 @@ function UpdateParking() {
                   </Row>
 
                   <Button
-                    variant="primary"
+                    variant="success"
                     type="submit"
                     className="font-weight-bold btn-lg btn w-100"
                   >
                     Actualizar
+                  </Button>
+
+                  <Button
+                    variant="danger"
+                    onClick={handleDelete}
+                    className="mt-3 font-weight-bold btn-lg btn w-100"
+                  >
+                    Eliminar
                   </Button>
                 </>
               )}

@@ -1,5 +1,5 @@
 .bg-home-container {
-    
+    background-image: url("/bog.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

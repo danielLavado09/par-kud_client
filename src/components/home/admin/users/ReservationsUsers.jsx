@@ -17,7 +17,7 @@ function ReservationsUsers() {
   const [selectedStatus, setSelectedStatus] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const statusOptions = ["Confirmed", "Cancelled"];
+  const statusOptions = ["Confirmada", "Cancelada"];
 
   useEffect(() => {
     getCities();
@@ -44,7 +44,7 @@ function ReservationsUsers() {
         const response = await fetch(
           `http://localhost:3000/reservations/updateStatus/${selectedReservation.reservationId}`,
           {
-            method: "POST",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
@@ -63,7 +63,7 @@ function ReservationsUsers() {
           setNotificationType("success");
           setNotification("Reserva actualizada.");
         } else {
-          throw new Error("Error al actualizar la reserva");
+          //throw new Error("Error al actualizar la reserva");
         }
       } catch (error) {
         setShowAlert(true);

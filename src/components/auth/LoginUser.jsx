@@ -7,7 +7,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 function LoginUser() {
   const navigate = useNavigate();
-  const { role, setRole, user, setUser } = useContext(UserContext);
+  const { setRole, setUser } = useContext(UserContext);
   const [isValidCaptcha, setIsValidCaptcha] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ function LoginUser() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (isValidCaptcha && !role && !user) {
+    if (isValidCaptcha) {
       try {
         // Realizar solicitud al backend para registrar al usuario
         const response = await fetch("http://localhost:3000/user/login", {
@@ -54,11 +54,11 @@ function LoginUser() {
             navigate("/user/new-password");
           }
         } else {
-          // Manejar el caso de error en la respuesta
           throw new Error("Error al iniciar sesión.");
         }
       } catch (error) {
         setRole(null);
+        setUser(null);
         alert(error.message);
         console.error(error);
       }
